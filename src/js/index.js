@@ -13,6 +13,7 @@ refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 let searchQuery = '';
+let currentPage = 1;
 
 function onFormSubmit(event) {
   event.preventDefault();
