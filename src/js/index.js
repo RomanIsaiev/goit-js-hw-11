@@ -18,6 +18,12 @@ function onFormSubmit(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.elements.searchQuery.value;
 
+  if (searchQuery === '') {
+    refs.loadMoreBtn.classList.remove('show-load-more');
+    refs.gallery.innerHTML = '';
+    return;
+  }
+
   clearGalleryContainer();
   currentPage = 1;
   refs.loadMoreBtn.classList.remove('show-load-more');
