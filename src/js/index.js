@@ -31,7 +31,6 @@ function onFormSubmit(event) {
 
   getImageCard(searchQuery, currentPage)
     .then(result => {
-      console.log(result);
       const render = renderImageCard(result.hits);
       refs.gallery.insertAdjacentHTML('beforeend', render);
       refs.loadMoreBtn.classList.add('show-load-more');
