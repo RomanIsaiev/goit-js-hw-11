@@ -1,9 +1,8 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 
-export async function getImageCard(searchQuery) {
+export async function getImageCard(searchQuery, currentPage) {
   let totalHits = 0;
-  currentPage = 1;
 
   if (totalHits === 500) {
     Notiflix.Notify.failure(

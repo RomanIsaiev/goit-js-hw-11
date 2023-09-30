@@ -29,7 +29,7 @@ function onFormSubmit(event) {
   currentPage = 1;
   refs.loadMoreBtn.classList.remove('show-load-more');
 
-  getImageCard(searchQuery)
+  getImageCard(searchQuery, currentPage)
     .then(result => {
       console.log(result);
       const render = renderImageCard(result.hits);
@@ -41,7 +41,7 @@ function onFormSubmit(event) {
 
 function onLoadMore() {
   currentPage += 1;
-  getImageCard(searchQuery).then(result => {
+  getImageCard(searchQuery, currentPage).then(result => {
     const render = renderImageCard(result.hits);
     refs.gallery.insertAdjacentHTML('beforeend', render);
   });
