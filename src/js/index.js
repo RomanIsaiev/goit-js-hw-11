@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import { renderImageCard } from './markup';
 
 const refs = {
   form: document.querySelector('.search-form'),
@@ -24,7 +25,8 @@ function onFormSubmit(event) {
 
   getImageCard(searchQuery)
     .then(result => {
-      renderImageCard(result.hits);
+      const render = renderImageCard(result.hits);
+      refs.gallery.insertAdjacentHTML('beforeend', render);
       refs.loadMoreBtn.classList.add('show-load-more');
     })
     .catch(error => console.log(error));
@@ -62,35 +64,9 @@ async function getImageCard(searchQuery) {
 function onLoadMore() {
   currentPage += 1;
   getImageCard(searchQuery).then(result => {
-    renderImageCard(result.hits);
+    const render = renderImageCard(result.hits);
+    refs.gallery.insertAdjacentHTML('beforeend', render);
   });
-}
-
-function renderImageCard(data) {
-  const markup = data
-    .map(card => {
-      return `
-<div class="photo-card">
-  <img src="${card.webformatURL}" alt="${card.tags}" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes: ${card.likes}</b>
-    </p>
-    <p class="info-item">
-      <b>Views: ${card.views}</b>
-    </p>
-    <p class="info-item">
-      <b>Comments: ${card.comments}</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads: ${card.downloads}</b>
-    </p>
-  </div>
-</div>`;
-    })
-    .join('');
-
-  refs.gallery.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearGalleryContainer() {
