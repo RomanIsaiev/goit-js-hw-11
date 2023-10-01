@@ -13,9 +13,6 @@ export async function getImageCard(searchQuery, currentPage) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      console.log(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
       return;
     }
     return response.data;

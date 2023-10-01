@@ -1,10 +1,7 @@
-import axios from 'axios';
 import Notiflix from 'notiflix';
 import { renderImageCard } from './markup';
 import { getImageCard } from './api-service';
 import { refs } from './refs';
-// import { onFormSubmit } from './form-submit';
-// import { onLoadMore } from './load-more';
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
@@ -32,7 +29,7 @@ function onFormSubmit(event) {
       refs.gallery.insertAdjacentHTML('beforeend', render);
       refs.loadMoreBtn.classList.add('show-load-more');
     })
-    .catch(error => console.log(error));
+    .catch(error => Notiflix.Notify.failure(error));
 }
 
 function onLoadMore() {
