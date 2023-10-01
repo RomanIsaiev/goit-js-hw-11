@@ -28,7 +28,7 @@ function onFormSubmit(event) {
       refs.gallery.insertAdjacentHTML('beforeend', render);
       refs.loadMoreBtn.classList.add('show-load-more');
     })
-    .catch(error => Notiflix.Notify.failure(error));
+    .catch(error => Notiflix.Notify.failure('Error:', error));
 }
 
 function onLoadMore() {
