@@ -6,8 +6,5 @@
 import { onFormSubmit } from './form-submit';
 import { onLoadMore } from './load-more';
 
-// let searchQuery = '';
-// let currentPage = 1;
-
 onFormSubmit;
 onLoadMore;
