@@ -20,7 +20,6 @@ function onFormSubmit(event) {
   }
 
   refs.gallery.innerHTML = '';
-  const currentPage = 1;
   refs.loadMoreBtn.classList.remove('show-load-more');
 
   getImageCard(searchQuery, currentPage)
