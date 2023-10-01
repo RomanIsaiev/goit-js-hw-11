@@ -5,6 +5,8 @@ import Notiflix from 'notiflix';
 
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
+let currentPage = 1;
+
 export function onLoadMore() {
   currentPage += 1;
   getImageCard(searchQuery, currentPage).then(result => {

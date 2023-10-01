@@ -3,7 +3,7 @@ import { getImageCard } from './api-service';
 import { renderImageCard } from './markup';
 
 refs.form.addEventListener('submit', onFormSubmit);
-let currentPage = 1;
+
 let searchQuery = '';
 
 export function onFormSubmit(event) {
