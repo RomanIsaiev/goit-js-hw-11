@@ -1,29 +1,30 @@
-// import { refs } from './refs';
-// import { getImageCard } from './api-service';
-// import { renderImageCard } from './markup';
+import { refs } from './refs';
+import { getImageCard } from './api-service';
+import { renderImageCard } from './markup';
+import { pageOptions } from './page-options';
 
-// let searchQuery = '';
+refs.form.addEventListener('submit', onFormSubmit);
 
-// export function onFormSubmit(event) {
-//   event.preventDefault();
-//   searchQuery = event.currentTarget.elements.searchQuery.value;
+export function onFormSubmit(event) {
+  event.preventDefault();
+  searchQuery = event.currentTarget.elements.searchQuery.value;
 
-//   if (searchQuery === '') {
-//     refs.loadMoreBtn.classList.remove('show-load-more');
-//     refs.gallery.innerHTML = '';
-//     return;
-//   }
+  pageOptions.currentPage = 1;
 
-//   refs.gallery.innerHTML = '';
-//   const currentPage = 1;
-//   refs.loadMoreBtn.classList.remove('show-load-more');
+  if (searchQuery === '') {
+    refs.loadMoreBtn.classList.remove('show-load-more');
+    refs.gallery.innerHTML = '';
+    return;
+  }
 
-//   getImageCard(searchQuery, currentPage)
-//     .then(result => {
-//       console.log(result);
-//       const render = renderImageCard(result.hits);
-//       refs.gallery.insertAdjacentHTML('beforeend', render);
-//       refs.loadMoreBtn.classList.add('show-load-more');
-//     })
-//     .catch(error => console.log(error));
-// }
+  refs.gallery.innerHTML = '';
+  refs.loadMoreBtn.classList.remove('show-load-more');
+
+  getImageCard(searchQuery, pageOptions.currentPage)
+    .then(result => {
+      const render = renderImageCard(result.hits);
+      refs.gallery.insertAdjacentHTML('beforeend', render);
+      refs.loadMoreBtn.classList.add('show-load-more');
+    })
+    .catch(error => Notiflix.Notify.failure('Error', error));
+}
