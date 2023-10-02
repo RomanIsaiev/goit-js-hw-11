@@ -7,11 +7,11 @@ refs.form.addEventListener('submit', onFormSubmit);
 
 export function onFormSubmit(event) {
   event.preventDefault();
-  searchQuery = event.currentTarget.elements.searchQuery.value;
+  pageOptions.searchQuery = event.currentTarget.elements.searchQuery.value;
 
   pageOptions.currentPage = 1;
 
-  if (searchQuery === '') {
+  if (pageOptions.searchQuery === '') {
     refs.loadMoreBtn.classList.remove('show-load-more');
     refs.gallery.innerHTML = '';
     return;
@@ -20,7 +20,7 @@ export function onFormSubmit(event) {
   refs.gallery.innerHTML = '';
   refs.loadMoreBtn.classList.remove('show-load-more');
 
-  getImageCard(searchQuery, pageOptions.currentPage)
+  getImageCard(pageOptions.searchQuery, pageOptions.currentPage)
     .then(result => {
       const render = renderImageCard(result.hits);
       refs.gallery.insertAdjacentHTML('beforeend', render);
