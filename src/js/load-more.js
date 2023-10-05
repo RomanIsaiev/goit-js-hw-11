@@ -12,6 +12,7 @@ export function onLoadMore() {
     result => {
       const render = renderImageCard(result.hits);
       refs.gallery.insertAdjacentHTML('beforeend', render);
+      pageOptions.simpleLightBox.refresh();
       if (pageOptions.currentPage > result.totalHits / 20) {
         Notiflix.Notify.failure(
           "We're sorry, but you've reached the end of search results."

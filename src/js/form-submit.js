@@ -2,6 +2,7 @@ import { refs } from './refs';
 import { getImageCard } from './api-service';
 import { renderImageCard } from './markup';
 import { pageOptions } from './page-options';
+import Notiflix from 'notiflix';
 
 refs.form.addEventListener('submit', onFormSubmit);
 
@@ -25,6 +26,8 @@ export function onFormSubmit(event) {
       const render = renderImageCard(result.hits);
       refs.gallery.insertAdjacentHTML('beforeend', render);
       refs.loadMoreBtn.classList.add('show-load-more');
+      Notiflix.Notify.success(`Hooray! We found ${result.totalHits} images.`);
+      pageOptions.simpleLightBox.refresh();
     })
     .catch(error => Notiflix.Notify.failure('Error', error));
 }

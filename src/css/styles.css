@@ -40,6 +40,11 @@ body {
 .photo-card {
   width: 350px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  transition: scale 250ms linear;
+}
+
+.photo-card:hover {
+  scale: 1.1;
 }
 
 .photo-card img {
@@ -72,4 +77,8 @@ body {
   border: none;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+.photo-card-link {
+  text-decoration: none;
 }
